@@ -1,0 +1,21 @@
+.sideMenu {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200px;
+    min-height: 100vh;
+    background: #fff;
+}
+.menu {
+    margin-top: 24px;
+    margin-left: 24px;
+    text-align: left;
+}
+.menu-item {
+    &:hover {
+        color: #23a2dc;
+    }
+}
+.menu-active {
+    color: #23a2dc;
+}

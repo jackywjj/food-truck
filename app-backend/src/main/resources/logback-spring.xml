@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="false">
+    <springProfile name="dev">
+        <property name="LOG_FILE" value="app-admin"/>
+        <property name="LOG_PATH" value="/Users/jacky/workdisk/logs/${LOG_FILE}"/>
+
+        <!--控制台输出 -->
+        <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <Pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level[%thread]%logger{56}.%method:%L - %msg%n
+                </Pattern>
+            </encoder>
+        </appender>
+
+        <appender name="INFO_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_PATH}/info.log</file>
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>INFO</level>
+            </filter>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_PATH}/${LOG_FILE}-info.%d{yyyy-MM-dd}.log</fileNamePattern>
+            </rollingPolicy>
+            <encoder>
+                <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            </encoder>
+        </appender>
+
+        <appender name="ERROR_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_PATH}/error.log</file>
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>ERROR</level>
+            </filter>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <FileNamePattern>${LOG_PATH}/${LOG_FILE}-error.%d{yyyy-MM-dd}.%i.log
+                </FileNamePattern>
+                <MaxHistory>30</MaxHistory>
+                <MaxFileSize>100MB</MaxFileSize>
+            </rollingPolicy>
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n
+                </pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+        </appender>
+
+        <logger name="com.moker" level="INFO"/>
+        <root level="INFO">
+            <appender-ref ref="stdout"/>
+            <appender-ref ref="INFO_LOG"/>
+            <appender-ref ref="ERROR_LOG"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="prd,local">
+        <property name="LOG_FILE" value="app-admin"/>
+        <property name="LOG_PATH" value="/mkdisk/logs/${LOG_FILE}"/>
+
+        <!--控制台输出 -->
+        <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <Pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level[%thread]%logger{56}.%method:%L - %msg%n
+                </Pattern>
+            </encoder>
+        </appender>
+
+        <appender name="INFO_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_PATH}/info.log</file>
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>INFO</level>
+            </filter>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_PATH}/${LOG_FILE}-info.%d{yyyy-MM-dd}.log</fileNamePattern>
+                <MaxHistory>60</MaxHistory>
+            </rollingPolicy>
+            <encoder>
+                <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            </encoder>
+        </appender>
+
+        <appender name="ERROR_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_PATH}/error.log</file>
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>ERROR</level>
+            </filter>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <FileNamePattern>${LOG_PATH}/${LOG_FILE}-error.%d{yyyy-MM-dd}.%i.log
+                </FileNamePattern>
+                <MaxHistory>30</MaxHistory>
+                <MaxFileSize>100MB</MaxFileSize>
+            </rollingPolicy>
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n
+                </pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+        </appender>
+
+        <logger name="com.moker" level="INFO"/>
+        <root level="INFO">
+            <appender-ref ref="stdout"/>
+            <appender-ref ref="INFO_LOG"/>
+            <appender-ref ref="ERROR_LOG"/>
+        </root>
+    </springProfile>
+</configuration>

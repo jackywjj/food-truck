@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      max-lifetime: 300000
+    password: 0401cy
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://127.0.0.1/test_db?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+logging:
+  file:
+    name: info.log
+    path: /Users/jacky/workdisk/logs/javalog/
+mybatis-plus:
+  configuration:
+    auto-mapping-behavior: full
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.truck.food.*.entity

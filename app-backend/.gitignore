@@ -1,0 +1,17 @@
+/sbin/
+/.idea/
+/.project
+build/
+/.classpath
+/.settings
+/.gradle
+/.iml
+/src/test/**
+/target/
+/classes
+out/
+/gradlew
+/gradlew.bat
+/gradle/
+/**.log
+/logs
